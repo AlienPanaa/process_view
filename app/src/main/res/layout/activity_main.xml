@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="@color/black">
+
+        <Button
+            android:id="@+id/add_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_count"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/reduce_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reduce_count"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/change_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/type"
+            app:layout_constraintTop_toBottomOf="@id/reduce_count"
+            app:layout_constraintBottom_toTopOf="@id/progress"/>
+
+        <com.view.alienlib.process_view.CubeProcessView
+            android:id="@+id/progress"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:angle="20"
+            app:arrow_type="FULL_ARROW"
+            app:arrow_full="NON|START"
+            app:between_space="15"
+            app:block_count="4"
+            app:block_progress="2"
+            app:block_selected_color="#F85F05"
+            app:block_selected_colors="@array/selected_colors"
+            app:block_unselected_color="@color/white"
+            app:bolder_width_dp="1.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:text_align="CENTER"
+            app:text_color="@color/black"
+            app:text_padding_top_bottom_dp="0"
+            app:text_size_sp="18"
+            app:text_min_size_sp="8"
+            app:text_auto_zoom_out="true"
+            app:text_split_key="SPLIT_KEY_4"
+            app:texts="@array/texts_string" />
+
+        <SeekBar
+            android:id="@+id/angle_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="179"
+            android:min="1"
+            app:layout_constraintTop_toBottomOf="@id/progress"
+            app:layout_constraintBottom_toTopOf="@id/add"/>
+
+        <Button
+            android:id="@+id/reduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reduce"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

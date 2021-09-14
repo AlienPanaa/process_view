@@ -1,0 +1,3 @@
+include ':alienLib'
+include ':app'
+rootProject.name = "ProcessView"
