@@ -2,31 +2,31 @@ package com.view.alienlib.process_view;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.MainThread;
 import androidx.annotation.Nullable;
 
 import com.view.alienlib.base.TextInfo;
-import com.view.alienlib.process_view.base.ProcessView;
-import com.view.alienlib.process_view.base.ProcessViewInfo;
+import com.view.alienlib.process_view.base.ProgressView;
+import com.view.alienlib.process_view.base.ProgressViewInfo;
 import com.view.alienlib.process_view.path.ArrowTypeManager;
 import com.view.alienlib.process_view.path.BlockPath;
 import com.view.alienlib.process_view.text.BlockText;
 import com.view.alienlib.process_view.text.TextProcessException;
 import com.view.alienlib.process_view.text.TextWithRule;
 
-public class CubeProcessView extends ProcessView {
+public class CubeProgressView extends ProgressView {
 
-    private static final String TAG = CubeProcessView.class.getSimpleName();
-    private BlockPath<ProcessViewInfo> blockPath;
+    private static final String TAG = CubeProgressView.class.getSimpleName();
+    private BlockPath<ProgressViewInfo> blockPath;
 
     private Canvas canvas;
 
@@ -35,15 +35,15 @@ public class CubeProcessView extends ProcessView {
 
     private final BlockText blockText = new TextWithRule();
 
-    public CubeProcessView(Context context) {
+    public CubeProgressView(Context context) {
         super(context);
     }
 
-    public CubeProcessView(Context context, @Nullable AttributeSet attrs) {
+    public CubeProgressView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CubeProcessView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CubeProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -121,7 +121,44 @@ public class CubeProcessView extends ProcessView {
     }
 
 
-/// TODO: 操作方法 ( 抽出
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float x = event.getX();
+
+        if(!viewAttr.clickable) {
+            return super.onTouchEvent(event);
+        }
+
+        try {
+            int curIndex = getProgress();
+            int userTouchIndex = -1;
+
+            for(int i = 0; i < textSpace.length; i++) {
+                RectF rectF  = textSpace[i];
+
+                if(x > rectF.left && x < rectF.right) {
+                    userTouchIndex = i + 1;
+                    break;
+                }
+            }
+
+            if(userTouchIndex != -1 && curIndex != userTouchIndex) {
+                setProgress(userTouchIndex);
+
+                ProgressViewListener progressViewListener = getProgressViewListener();
+                if(progressViewListener != null) {
+                    progressViewListener.OnProgress(userTouchIndex);
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    /// TODO: 操作方法 ( 抽出
     public int getProgress() {
         return viewAttr.blockProgress;
     }

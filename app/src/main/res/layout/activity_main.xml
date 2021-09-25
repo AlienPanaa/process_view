@@ -37,7 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/reduce_count"
             app:layout_constraintBottom_toTopOf="@id/progress"/>
 
-        <com.view.alienlib.process_view.CubeProcessView
+        <com.view.alienlib.process_view.CubeProgressView
             android:id="@+id/progress"
             android:layout_width="match_parent"
             android:layout_height="75dp"

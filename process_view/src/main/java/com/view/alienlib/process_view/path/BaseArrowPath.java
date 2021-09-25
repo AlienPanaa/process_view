@@ -7,14 +7,14 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.view.alienlib.base.TextSpaceInfo;
-import com.view.alienlib.process_view.base.ProcessViewInfo;
+import com.view.alienlib.process_view.base.ProgressViewInfo;
 
-public abstract class BaseArrowPath implements BlockPath<ProcessViewInfo> {
+public abstract class BaseArrowPath implements BlockPath<ProgressViewInfo> {
 
     private static final String TAG = BaseArrowPath.class.getSimpleName();
 
-    protected ProcessViewInfo viewInfo;
-    protected ProcessViewInfo.ViewAttr viewAttr;
+    protected ProgressViewInfo viewInfo;
+    protected ProgressViewInfo.ViewAttr viewAttr;
 
     protected int[] blocksWidth;
     protected float unnecessaryLength;
@@ -22,7 +22,7 @@ public abstract class BaseArrowPath implements BlockPath<ProcessViewInfo> {
     private boolean isCalcPath;
     private TextSpaceInfo[] textSpaceInfo;
 
-    private void prepareTools(ProcessViewInfo viewInfo) {
+    private void prepareTools(ProgressViewInfo viewInfo) {
         this.viewInfo = viewInfo;
         this.viewAttr = viewInfo.getViewAttr();
 
@@ -50,7 +50,7 @@ public abstract class BaseArrowPath implements BlockPath<ProcessViewInfo> {
     }
 
     @Override
-    public Path[] getArrowPath(ProcessViewInfo viewInfo) {
+    public Path[] getArrowPath(ProgressViewInfo viewInfo) {
         prepareTools(viewInfo);
 
         textSpaceInfo = new TextSpaceInfo[viewAttr.blockCount];
@@ -65,7 +65,7 @@ public abstract class BaseArrowPath implements BlockPath<ProcessViewInfo> {
     protected abstract Path[] getArrowPath(@NonNull Path[] results, TextSpaceInfo[] textSpaceInfo);
 
     @Override
-    public RectF[] getTextSpace(ProcessViewInfo viewInfo) {
+    public RectF[] getTextSpace(ProgressViewInfo viewInfo) {
         prepareTools(viewInfo);
 
         if(!isCalcPath) {

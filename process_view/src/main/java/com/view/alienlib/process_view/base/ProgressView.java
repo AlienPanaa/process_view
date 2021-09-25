@@ -21,9 +21,14 @@ import static android.util.TypedValue.COMPLEX_UNIT_SP;
 /**
  * 分析使用者設定 & 打包 Draw 所需工具
  */
-public abstract class ProcessView extends BaseView<ProcessViewInfo> {
+public abstract class ProgressView extends BaseView<ProgressViewInfo> {
 
-    private static final String TAG = ProcessView.class.getSimpleName();
+    @FunctionalInterface
+    public interface ProgressViewListener {
+        void OnProgress(int process);
+    }
+
+    private static final String TAG = ProgressView.class.getSimpleName();
     private static final int[] ATTR_RES_IDS = R.styleable.process_view;
 
 /// Attr style
@@ -32,6 +37,10 @@ public abstract class ProcessView extends BaseView<ProcessViewInfo> {
     private Direction viewDirection;
 
     private boolean enableCycleLine;
+
+    private ProgressViewListener progressViewListener;
+
+    private boolean clickable;
 
     private int bolderColor;
     private float bolderWidth;
@@ -52,25 +61,25 @@ public abstract class ProcessView extends BaseView<ProcessViewInfo> {
     private Paint.Align textAlign;
 
     private int arrowFullFlag;
-    private BlockPath<ProcessViewInfo> arrowBlockPath;
+    private BlockPath<ProgressViewInfo> arrowBlockPath;
 
 /// View Tools
     private Paint bolderPaint, blockPaint, textPaint;
 
 /// Total view info
-    protected ProcessViewInfo viewInfo;
-    protected ProcessViewInfo.DrawTools drawTools;
-    protected ProcessViewInfo.ViewAttr viewAttr;
+    protected ProgressViewInfo viewInfo;
+    protected ProgressViewInfo.DrawTools drawTools;
+    protected ProgressViewInfo.ViewAttr viewAttr;
 
-    public ProcessView(Context context) {
+    public ProgressView(Context context) {
         super(context);
     }
 
-    public ProcessView(Context context, @Nullable AttributeSet attrs) {
+    public ProgressView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ProcessView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -135,6 +144,9 @@ public abstract class ProcessView extends BaseView<ProcessViewInfo> {
     }
 
     private void initBlockAttr(TypedArray typedArray) {
+
+        clickable = typedArray.getBoolean(R.styleable.process_view_clickable, true);
+
         bolderColor = typedArray.getColor(R.styleable.process_view_bolder_color, Color.YELLOW);
         float width = typedArray.getFloat(R.styleable.process_view_bolder_width_dp, 1.5f);
         bolderWidth = TypedValue.applyDimension(COMPLEX_UNIT_DIP, width, Resources.getSystem().getDisplayMetrics());
@@ -175,17 +187,19 @@ public abstract class ProcessView extends BaseView<ProcessViewInfo> {
     }
 
     @Override
-    protected ProcessViewInfo initViewInfo() {
-        viewInfo = new ProcessViewInfo();
+    protected ProgressViewInfo initViewInfo() {
+        viewInfo = new ProgressViewInfo();
         drawTools = viewInfo.getDrawTools();
         viewAttr = viewInfo.getViewAttr();
 
-        ProcessViewInfo.DrawTools drawTools = viewInfo.getDrawTools();
+        ProgressViewInfo.DrawTools drawTools = viewInfo.getDrawTools();
         drawTools.bolderPaint = bolderPaint;
         drawTools.blockPaint = blockPaint;
         drawTools.textPaint = textPaint;
 
-        ProcessViewInfo.ViewAttr viewAttr = viewInfo.getViewAttr();
+        ProgressViewInfo.ViewAttr viewAttr = viewInfo.getViewAttr();
+        viewAttr.clickable = clickable;
+
         viewAttr.blockCount = blockCount;
         viewAttr.blockProgress = blockProgress;
         viewAttr.blockPercent = blockPercent;
@@ -215,7 +229,15 @@ public abstract class ProcessView extends BaseView<ProcessViewInfo> {
         return ATTR_RES_IDS;
     }
 
-    protected BlockPath<ProcessViewInfo> getArrowBlockPath() {
+    protected BlockPath<ProgressViewInfo> getArrowBlockPath() {
         return arrowBlockPath;
+    }
+
+    public ProgressViewListener getProgressViewListener() {
+        return progressViewListener;
+    }
+
+    public void setProcessViewListener(ProgressViewListener progressViewListener) {
+        this.progressViewListener = progressViewListener;
     }
 }

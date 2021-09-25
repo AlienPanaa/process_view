@@ -2,7 +2,7 @@ package com.view.alienlib.process_view.path;
 
 import androidx.annotation.IntDef;
 
-import com.view.alienlib.process_view.base.ProcessViewInfo;
+import com.view.alienlib.process_view.base.ProgressViewInfo;
 import com.view.alienlib.process_view.path.full.Arrow;
 import com.view.alienlib.process_view.path.single.SingleArrow;
 
@@ -33,8 +33,8 @@ public class ArrowTypeManager {
     @Retention(RetentionPolicy.SOURCE)
     public @interface ArrowFull {}
 
-    public static BlockPath<ProcessViewInfo> getBlockPath(@ArrowType int type) {
-        BlockPath<ProcessViewInfo> result;
+    public static BlockPath<ProgressViewInfo> getBlockPath(@ArrowType int type) {
+        BlockPath<ProgressViewInfo> result;
 
         switch (type) {
             case FULL_ARROW:

@@ -2,6 +2,8 @@
 <resources>
 
     <declare-styleable name="process_view">
+        <attr name="clickable" format="boolean"/>
+
         <attr name="bolder_width_dp" format="float"/>
         <attr name="bolder_color" format="color"/>
 

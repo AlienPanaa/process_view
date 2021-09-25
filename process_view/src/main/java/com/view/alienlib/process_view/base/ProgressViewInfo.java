@@ -6,7 +6,7 @@ import android.graphics.Shader;
 
 import com.view.alienlib.base.ViewInfo;
 
-public class ProcessViewInfo implements ViewInfo {
+public class ProgressViewInfo implements ViewInfo {
 
     public static final class ViewAttr {
         public int usefulHeight;
@@ -14,7 +14,7 @@ public class ProcessViewInfo implements ViewInfo {
 
         public int blockCount, blockProgress, betweenSpace;
         public float viewAngle;
-        public ProcessView.Direction viewDirection;
+        public ProgressView.Direction viewDirection;
 
         public boolean enableCycleLine;
 
@@ -31,6 +31,7 @@ public class ProcessViewInfo implements ViewInfo {
         public String textSplitKey;
         public float textPxSize;
         public float textMinPxSize;
+        public boolean clickable;
 
         private Shader shader;
 
@@ -154,7 +155,7 @@ public class ProcessViewInfo implements ViewInfo {
     private final ViewAttr viewAttr;
     private final DrawTools drawTools;
 
-    public ProcessViewInfo() {
+    public ProgressViewInfo() {
         viewAttr = new ViewAttr();
         drawTools = new DrawTools();
     }

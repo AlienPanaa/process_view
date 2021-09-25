@@ -7,7 +7,7 @@ import android.util.TypedValue;
 
 import com.view.alienlib.base.TextInfo;
 import com.view.alienlib.base.ViewTools;
-import com.view.alienlib.process_view.base.ProcessViewInfo;
+import com.view.alienlib.process_view.base.ProgressViewInfo;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class TextWithRule implements BlockText {
     private static final List<TextInfo> result = new LinkedList<>();
     private static final Paint textSizePaint = new Paint();
 
-    private ProcessViewInfo.ViewAttr viewAttr;
+    private ProgressViewInfo.ViewAttr viewAttr;
 
     private final float oneSpUnit;
 
@@ -100,7 +100,7 @@ public class TextWithRule implements BlockText {
     }
 
     @Override
-    public TextInfo[] getTextSpaceInfo(ProcessViewInfo.ViewAttr viewAttr, RectF[] rectFS) throws TextProcessException {
+    public TextInfo[] getTextSpaceInfo(ProgressViewInfo.ViewAttr viewAttr, RectF[] rectFS) throws TextProcessException {
         this.viewAttr = viewAttr;
 
         String[] texts = preCheck();
