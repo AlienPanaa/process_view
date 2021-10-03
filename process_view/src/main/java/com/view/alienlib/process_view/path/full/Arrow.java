@@ -16,8 +16,9 @@ public class Arrow extends BaseArrow {
 
     @Override
     protected void calcX1() {
+
         float x = nextStartPoint.x;
-        float y = 0;
+        float y = viewAttr.bolderWidth / 2;
 
         curPath.moveTo(x, y);
 
@@ -33,7 +34,7 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX2(float triangleLen) {
         float x = getCurBlockWidth() - triangleLen;
-        float y = 0;
+        float y = viewAttr.bolderWidth / 2;
 
         curPath.lineTo(x, y);
 
@@ -58,7 +59,7 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX4(float triangleLen) {
         float x = curPathInfo.x - triangleLen;
-        float y = viewInfo.usefulHeight;
+        float y = viewInfo.usefulHeight - viewAttr.bolderWidth / 2;
 
         curPath.lineTo(x, y);
 
@@ -68,7 +69,7 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX5() {
         float x = 0;
-        float y = viewInfo.usefulHeight;
+        float y = viewInfo.usefulHeight - viewAttr.bolderWidth / 2;
 
         if(!isFirstBlock()) {
             x = nextEndPoint.x;
@@ -90,7 +91,7 @@ public class Arrow extends BaseArrow {
 
         curTextSpaceInfo.startX = x;
 
-        curPath.lineTo(curStartPoint.x, curStartPoint.y);   // Close Block, Don't use close
+        curPath.lineTo(curStartPoint.x, curStartPoint.y - viewAttr.bolderWidth);   // Close Block, Don't use close
     }
 
 }

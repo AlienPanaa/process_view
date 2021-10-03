@@ -32,6 +32,7 @@ public class ProgressViewInfo implements ViewInfo {
         public float textPxSize;
         public float textMinPxSize;
         public boolean clickable;
+        public float bolderWidth;
 
         private Shader shader;
 

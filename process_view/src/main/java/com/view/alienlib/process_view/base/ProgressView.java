@@ -200,6 +200,8 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
         ProgressViewInfo.ViewAttr viewAttr = viewInfo.getViewAttr();
         viewAttr.clickable = clickable;
 
+        viewAttr.bolderWidth = bolderWidth;
+
         viewAttr.blockCount = blockCount;
         viewAttr.blockProgress = blockProgress;
         viewAttr.blockPercent = blockPercent;
