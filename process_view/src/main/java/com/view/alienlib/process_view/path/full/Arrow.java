@@ -91,7 +91,7 @@ public class Arrow extends BaseArrow {
 
         curTextSpaceInfo.startX = x;
 
-        curPath.lineTo(curStartPoint.x, curStartPoint.y - viewAttr.bolderWidth);   // Close Block, Don't use close
+        curPath.lineTo(curStartPoint.x, curStartPoint.y - viewAttr.bolderWidth / 2);   // Close Block, Don't use close
     }
 
 }
