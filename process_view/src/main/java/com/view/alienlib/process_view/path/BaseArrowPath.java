@@ -32,7 +32,7 @@ public abstract class BaseArrowPath implements BlockPath<ProgressViewInfo> {
     }
 
     private float calcLength() {
-        double height = (viewInfo.usefulHeight / 2f);
+        double height = (viewAttr.usefulHeight / 2f);
 
         double viewAngle = Math.toRadians(viewAttr.viewAngle);
         double tan = Math.tan(viewAngle);
@@ -86,8 +86,8 @@ public abstract class BaseArrowPath implements BlockPath<ProgressViewInfo> {
 
             RectF rectF = rect[i];
 
-            rectF.top = 0;
-            rectF.bottom = (float) viewAttr.usefulHeight;
+            rectF.top = viewAttr.paddingTop;
+            rectF.bottom = (float) viewAttr.usefulHeight + viewAttr.paddingTop;
 
             rectF.left = textSpaceInfo[i].startX;
             rectF.right = textSpaceInfo[i].endX;

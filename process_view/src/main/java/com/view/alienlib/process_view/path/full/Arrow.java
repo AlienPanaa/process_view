@@ -17,8 +17,8 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX1() {
 
-        float x = nextStartPoint.x;
-        float y = viewAttr.bolderWidth / 2;
+        float x = nextStartPoint.x + viewAttr.paddingLeft;
+        float y = viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 
         curPath.moveTo(x, y);
 
@@ -34,7 +34,7 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX2(float triangleLen) {
         float x = getCurBlockWidth() - triangleLen;
-        float y = viewAttr.bolderWidth / 2;
+        float y = viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 
         curPath.lineTo(x, y);
 
@@ -49,7 +49,7 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX3() {
         float x = getCurBlockWidth();
-        float y = (viewInfo.usefulHeight / 2f);
+        float y = (viewAttr.usefulHeight / 2f) + viewAttr.paddingTop;
 
         curPath.lineTo(x, y);
 
@@ -59,17 +59,17 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX4(float triangleLen) {
         float x = curPathInfo.x - triangleLen;
-        float y = viewInfo.usefulHeight - viewAttr.bolderWidth / 2;
+        float y = viewAttr.usefulHeight - viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 
         curPath.lineTo(x, y);
 
-        curPathInfo = new PathInfo(x, y);
+        curPathInfo = new PathInfo(x + viewAttr.paddingLeft, y);
     }
 
     @Override
     protected void calcX5() {
-        float x = 0;
-        float y = viewInfo.usefulHeight - viewAttr.bolderWidth / 2;
+        float x = viewAttr.paddingLeft;
+        float y = viewAttr.usefulHeight - viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 
         if(!isFirstBlock()) {
             x = nextEndPoint.x;
@@ -85,13 +85,13 @@ public class Arrow extends BaseArrow {
     @Override
     protected void calcX6(float triangleLen) {
         float x = curStartPoint.x + triangleLen;
-        float y = curPathInfo.y / 2;
+        float y = (viewAttr.usefulHeight / 2f) + viewAttr.paddingTop;
 
         curPath.lineTo(x, y);
 
         curTextSpaceInfo.startX = x;
 
-        curPath.lineTo(curStartPoint.x, curStartPoint.y - viewAttr.bolderWidth / 2);   // Close Block, Don't use close
+        curPath.lineTo(curStartPoint.x, curStartPoint.y);   // Close Block, Don't use close
     }
 
 }

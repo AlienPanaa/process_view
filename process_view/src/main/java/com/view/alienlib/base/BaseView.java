@@ -3,7 +3,6 @@ package com.view.alienlib.base;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -94,7 +93,7 @@ public abstract class BaseView<T extends ViewInfo> extends View {
         return result;
     }
 
-    private int getUsefulWidth() {
+    public int getUsefulWidth() {
         int totalWidth = getWidth();
 
         final int paddingLeft = getPaddingLeft();
@@ -103,7 +102,7 @@ public abstract class BaseView<T extends ViewInfo> extends View {
         return totalWidth - paddingLeft - paddingRight;
     }
 
-    private int getUsefulHeight() {
+    public int getUsefulHeight() {
         int totalHeight = getHeight();
 
         final int paddingTop = getPaddingTop();
@@ -117,7 +116,8 @@ public abstract class BaseView<T extends ViewInfo> extends View {
         int usefulWidth = getUsefulWidth();
         int usefulHeight = getUsefulHeight();
 
-        viewInfo.setUsefulSpace(usefulWidth, usefulHeight);
+        viewInfo.onUsefulSpace(usefulWidth, usefulHeight);
+        viewInfo.onPadding(getPaddingTop(), getPaddingRight(), getPaddingBottom(), getPaddingLeft());
 
         implDraw(canvas);
     }

@@ -86,7 +86,7 @@ public class TextWithRule implements BlockText {
             textInfo.textSize = finalTextSize;
             textInfo.context = words[i];
             textInfo.startX = startX;
-            textInfo.startY = startY + ((i + 1) * textHeight) - viewAttr.textPaddingTopBottomDp;  // Reduce one padding
+            textInfo.startY = startY + ((i + 1) * textHeight) - viewAttr.textPaddingTopBottomDp + rectF.top;  // Reduce one padding
 
             result.add(textInfo);
         }

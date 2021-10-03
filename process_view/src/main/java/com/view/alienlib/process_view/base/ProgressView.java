@@ -170,6 +170,7 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
         bolderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         bolderPaint.setAntiAlias(true);
         bolderPaint.setStyle(Paint.Style.STROKE);
+        bolderPaint.setStrokeCap(Paint.Cap.ROUND);
         bolderPaint.setColor(bolderColor);
         bolderPaint.setStrokeWidth(bolderWidth);
 

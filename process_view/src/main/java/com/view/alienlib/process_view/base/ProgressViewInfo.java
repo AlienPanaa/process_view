@@ -12,6 +12,11 @@ public class ProgressViewInfo implements ViewInfo {
         public int usefulHeight;
         public int usefulWidth;
 
+        public int paddingTop;
+        public int paddingRight;
+        public int paddingBottom;
+        public int paddingLeft;
+
         public int blockCount, blockProgress, betweenSpace;
         public float viewAngle;
         public ProgressView.Direction viewDirection;
@@ -150,9 +155,6 @@ public class ProgressViewInfo implements ViewInfo {
         public Paint bolderPaint, blockPaint, textPaint;
     }
 
-    public int usefulWidth;
-    public int usefulHeight;
-
     private final ViewAttr viewAttr;
     private final DrawTools drawTools;
 
@@ -170,9 +172,17 @@ public class ProgressViewInfo implements ViewInfo {
     }
 
     @Override
-    public void setUsefulSpace(int width, int height) {
-        usefulWidth = viewAttr.usefulWidth = width;
-        usefulHeight = viewAttr.usefulHeight = height;
+    public void onUsefulSpace(int width, int height) {
+        viewAttr.usefulWidth = width;
+        viewAttr.usefulHeight = height;
+    }
+
+    @Override
+    public void onPadding(int top, int right, int bottom, int left) {
+        viewAttr.paddingTop = top;
+        viewAttr.paddingRight = right;
+        viewAttr.paddingBottom = bottom;
+        viewAttr.paddingLeft = left;
     }
 
 }

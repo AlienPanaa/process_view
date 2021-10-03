@@ -40,7 +40,7 @@ public class SingleArrow extends BaseSingleArrow {
     @Override
     protected void calcX3() {
         float x = curPathInfo.x;
-        float y = viewInfo.usefulHeight;
+        float y = viewAttr.usefulHeight;
 
         double viewAngle = Math.toRadians(viewAttr.viewAngle);
         double tan = Math.tan(viewAngle);
