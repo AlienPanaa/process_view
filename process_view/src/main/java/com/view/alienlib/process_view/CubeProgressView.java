@@ -196,6 +196,14 @@ public class CubeProgressView extends ProgressView {
         invalidate();
     }
 
+    public void plusCount() {
+        setCount(getCount() + 1);
+    }
+
+    public void reduceCount() {
+        setCount(getCount() - 1);
+    }
+
     @MainThread
     public void setCount(int value) {
         if(value < 0) {

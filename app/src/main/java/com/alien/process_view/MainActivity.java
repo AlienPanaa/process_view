@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int type = 1;
 
-    private int count;
     private ActivityMainBinding binding;
 
     @Override
@@ -22,30 +21,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        initData();
-
         initEvent();
     }
 
-    private void initData() {
-        count = binding.progress.getCount();
-    }
-
     private void initEvent() {
-        binding.add.setOnClickListener(v ->
-                binding.progress.plus());
+        binding.add.setOnClickListener(v -> binding.progress.plus());
 
-        binding.reduce.setOnClickListener(v ->
-                binding.progress.reduce());
+        binding.reduce.setOnClickListener(v -> binding.progress.reduce());
 
-        binding.addCount.setOnClickListener(v ->
-                binding.progress.setCount(++count));
+        binding.addCount.setOnClickListener(v -> binding.progress.plusCount());
 
-        binding.reduceCount.setOnClickListener(v ->
-                binding.progress.setCount(--count));
+        binding.reduceCount.setOnClickListener(v -> binding.progress.reduceCount());
 
         binding.changeType.setOnClickListener(v -> {
-
 //            binding.progress.setArrowType(result);
         });
 
