@@ -45,6 +45,10 @@ public class ProgressViewInfo implements ViewInfo {
         private Shader shader;
 
         public Shader getShader() {
+            if(blockColors == null) {
+                return null;
+            }
+
             if(shader != null) {
                 return shader;
             }
