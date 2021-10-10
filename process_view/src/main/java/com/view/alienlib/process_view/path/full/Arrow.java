@@ -16,7 +16,6 @@ public class Arrow extends BaseArrow {
 
     @Override
     protected void calcX1() {
-
         float x = nextStartPoint.x + viewAttr.paddingLeft;
         float y = viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 

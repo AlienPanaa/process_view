@@ -9,6 +9,9 @@ import com.view.alienlib.base.ViewInfo;
 public class ProgressViewInfo implements ViewInfo {
 
     public static final class ViewAttr {
+        public int height;
+        public int width;
+
         public int usefulHeight;
         public int usefulWidth;
 
@@ -50,9 +53,9 @@ public class ProgressViewInfo implements ViewInfo {
 
             shader = new LinearGradient(
                     middlePointX,
-                    0,
+                    paddingTop,
                     middlePointX,
-                    usefulHeight,
+                    usefulHeight + paddingTop,
                     blockColors,
                     null,
                     Shader.TileMode.CLAMP
@@ -141,7 +144,7 @@ public class ProgressViewInfo implements ViewInfo {
             int[] result = new int[blockCount];
             int totalPercentWeight = getTotalPercentWeight();
 
-            int everyBlockWidth = usefulWidth / totalPercentWeight;
+            int everyBlockWidth = (width - paddingRight) / totalPercentWeight;
 
             for(int i = 0; i < blockCount; i++) {
                 result[i] = blockPercent[i] * everyBlockWidth;
@@ -169,6 +172,12 @@ public class ProgressViewInfo implements ViewInfo {
 
     public DrawTools getDrawTools() {
         return drawTools;
+    }
+
+    @Override
+    public void onRaw(int width, int height) {
+        viewAttr.width = width;
+        viewAttr.height = height;
     }
 
     @Override

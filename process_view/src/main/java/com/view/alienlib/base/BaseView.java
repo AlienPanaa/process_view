@@ -116,6 +116,7 @@ public abstract class BaseView<T extends ViewInfo> extends View {
         int usefulWidth = getUsefulWidth();
         int usefulHeight = getUsefulHeight();
 
+        viewInfo.onRaw(getWidth(), getHeight());
         viewInfo.onUsefulSpace(usefulWidth, usefulHeight);
         viewInfo.onPadding(getPaddingTop(), getPaddingRight(), getPaddingBottom(), getPaddingLeft());
 

@@ -158,7 +158,6 @@ public class CubeProgressView extends ProgressView {
         return super.onTouchEvent(event);
     }
 
-    /// TODO: 操作方法 ( 抽出
     public int getProgress() {
         return viewAttr.blockProgress;
     }
@@ -179,10 +178,12 @@ public class CubeProgressView extends ProgressView {
         return result;
     }
 
+    @MainThread
     public void plus() {
         setProgress(getProgress() + 1);
     }
 
+    @MainThread
     public void reduce() {
         setProgress(getProgress() - 1);
     }
@@ -196,10 +197,12 @@ public class CubeProgressView extends ProgressView {
         invalidate();
     }
 
+    @MainThread
     public void plusCount() {
         setCount(getCount() + 1);
     }
 
+    @MainThread
     public void reduceCount() {
         setCount(getCount() - 1);
     }
