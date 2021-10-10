@@ -66,7 +66,7 @@
             app:text_color="@color/black"
             app:text_padding_top_bottom_dp="0"
             app:text_size_sp="18"
-            app:text_min_size_sp="8"
+            app:text_min_size_sp="10"
             app:text_auto_zoom_out="true"
             app:text_split_key="SPLIT_KEY_4"
             app:texts="@array/texts_string" />

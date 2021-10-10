@@ -179,6 +179,14 @@ public class CubeProgressView extends ProgressView {
         return result;
     }
 
+    public void plus() {
+        setProgress(getProgress() + 1);
+    }
+
+    public void reduce() {
+        setProgress(getProgress() - 1);
+    }
+
     @MainThread
     public void setProgress(int value) {
         value = checkValue(value);

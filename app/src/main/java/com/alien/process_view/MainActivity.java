@@ -2,17 +2,19 @@ package com.alien.process_view;
 
 import android.os.Bundle;
 import android.widget.SeekBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.alien.process_view.databinding.ActivityMainBinding;
+import com.view.alienlib.process_view.base.ProgressView;
 
 public class MainActivity extends AppCompatActivity {
 
     private int type = 1;
 
-    private int value, count;
+    private int count;
     private ActivityMainBinding binding;
 
     @Override
@@ -26,16 +28,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        value = binding.progress.getProgress();
         count = binding.progress.getCount();
     }
 
     private void initEvent() {
         binding.add.setOnClickListener(v ->
-                binding.progress.setProgress(++value));
+                binding.progress.plus());
 
         binding.reduce.setOnClickListener(v ->
-                binding.progress.setProgress(--value));
+                binding.progress.reduce());
 
         binding.addCount.setOnClickListener(v ->
                 binding.progress.setCount(++count));
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
 //            binding.progress.setArrowType(result);
         });
+
+        binding.progress.setProcessViewListener(process -> Toast.makeText(this, "progress: " + process, Toast.LENGTH_SHORT).show());
 
         binding.angleSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
