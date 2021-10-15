@@ -1,11 +1,17 @@
 package com.view.alienlib.base;
 
+import static android.util.TypedValue.COMPLEX_UNIT_DIP;
+import static android.util.TypedValue.COMPLEX_UNIT_SP;
+
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 
@@ -121,6 +127,30 @@ public abstract class BaseView<T extends ViewInfo> extends View {
         viewInfo.onPadding(getPaddingTop(), getPaddingRight(), getPaddingBottom(), getPaddingLeft());
 
         implDraw(canvas);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        int width = getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec);
+        int height;
+
+        if(heightMode == MeasureSpec.EXACTLY) {
+            height = heightSize;
+        } else if(heightMode == MeasureSpec.AT_MOST) {
+            height = defaultHeight();
+        } else {
+            height = getSuggestedMinimumHeight();
+        }
+
+        setMeasuredDimension(width, height);
+    }
+
+    protected int defaultHeight() {
+        return (int) TypedValue.applyDimension(COMPLEX_UNIT_DIP, 75f,
+                Resources.getSystem().getDisplayMetrics());
     }
 
     protected abstract void implDraw(Canvas canvas);
