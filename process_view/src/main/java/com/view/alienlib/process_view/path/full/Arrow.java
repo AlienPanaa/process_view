@@ -16,8 +16,12 @@ public class Arrow extends BaseArrow {
 
     @Override
     protected void calcX1() {
-        float x = nextStartPoint.x + viewAttr.paddingLeft;
+        float x = nextStartPoint.x;
         float y = viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
+
+        if(isFirstBlock()) {
+            x += viewAttr.paddingLeft;
+        }
 
         curPath.moveTo(x, y);
 
@@ -62,18 +66,19 @@ public class Arrow extends BaseArrow {
 
         curPath.lineTo(x, y);
 
-        curPathInfo = new PathInfo(x + viewAttr.paddingLeft, y);
+        curPathInfo = new PathInfo(x, y);
     }
 
     @Override
     protected void calcX5() {
-        float x = viewAttr.paddingLeft;
+        float x = isFirstBlock() ? viewAttr.paddingLeft : 0;
         float y = viewAttr.usefulHeight - viewAttr.bolderWidth / 2 + viewAttr.paddingTop;
 
         if(!isFirstBlock()) {
             x = nextEndPoint.x;
             y = nextEndPoint.y;
         }
+
         curPath.lineTo(x, y);
 
         nextEndPoint = new PathInfo(curPathInfo, viewAttr.betweenSpace);
