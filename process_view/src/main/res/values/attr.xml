@@ -19,14 +19,6 @@
         <attr name="text_min_size_sp" format="float"/>
         <attr name="text_color" format="color"/>
         <attr name="texts" format="reference"/>
-        <attr name="text_split_key" format="enum">
-            <enum name="SPLIT_KEY_1" value="0x0000"/>
-            <enum name="SPLIT_KEY_2" value="0x0001"/>
-            <enum name="SPLIT_KEY_3" value="0x0002"/>
-            <enum name="SPLIT_KEY_4" value="0x0003"/>
-            <enum name="SPLIT_KEY_5" value="0x0004"/>
-            <enum name="SPLIT_KEY_6" value="0x0005"/>
-        </attr>
         <attr name="text_align" format="enum">
             <enum name="LEFT" value="0x0000"/>
             <enum name="CENTER" value="0x0001"/>

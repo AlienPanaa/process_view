@@ -36,7 +36,6 @@ public class ProgressViewInfo implements ViewInfo {
         public float textPaddingTopBottomDp;
         public int textColor;
         public boolean textAutoZoomOut;
-        public String textSplitKey;
         public float textPxSize;
         public float textMinPxSize;
         public boolean clickable;

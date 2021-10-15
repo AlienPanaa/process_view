@@ -68,27 +68,23 @@ public class TextWithRule implements BlockText {
 
     private void splitText(String text, RectF rectF, float startX, float textHeight) throws TextProcessException {
 
-        String textSplitKey = viewAttr.textSplitKey;
+        try {
+            String[] words = text.split("\n");
 
-        if(textSplitKey == null || textSplitKey.isEmpty()) {
+            float startY = calcTopYAndAdjustTextSize(rectF, textHeight, words.length);
+
+            for(int i = 0; i < words.length; i++) {
+                TextInfo textInfo = new TextInfo();
+
+                textInfo.textSize = finalTextSize;
+                textInfo.context = words[i];
+                textInfo.startX = startX;
+                textInfo.startY = startY + ((i + 1) * textHeight) - viewAttr.textPaddingTopBottomDp + rectF.top;  // Reduce one padding
+
+                result.add(textInfo);
+            }
+        } catch (Exception e) {
             throw new TextProcessException();
-        } else if(text == null) {
-            text = "";
-        }
-
-        String[] words = text.split(textSplitKey);
-
-        float startY = calcTopYAndAdjustTextSize(rectF, textHeight, words.length);
-
-        for(int i = 0; i < words.length; i++) {
-            TextInfo textInfo = new TextInfo();
-
-            textInfo.textSize = finalTextSize;
-            textInfo.context = words[i];
-            textInfo.startX = startX;
-            textInfo.startY = startY + ((i + 1) * textHeight) - viewAttr.textPaddingTopBottomDp + rectF.top;  // Reduce one padding
-
-            result.add(textInfo);
         }
 
     }

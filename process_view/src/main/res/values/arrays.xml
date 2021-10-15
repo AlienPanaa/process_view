@@ -14,9 +14,9 @@
     </integer-array>
 
     <string-array name="texts_string">
-        <item>"Hello|Hi|AAA|BBB|CCC|DDD|EEE|FFF|GGG"</item>
+        <item>"Hello\nHi\nAAA\nBBB\nCCC\nDDD\nEEE\nFFF\nGGG"</item>
         <item>"World"</item>
-        <item>"!|?|*|#|^|.|/|\"</item>
+        <item>"!\n?\n*\n#\n^\n.\n/\n\"</item>
         <item>":D"</item>
     </string-array>
 

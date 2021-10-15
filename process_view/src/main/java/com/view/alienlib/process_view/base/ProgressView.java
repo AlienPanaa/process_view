@@ -56,7 +56,6 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
     private float textMinPxSize;
     private int textColor;
     private boolean textAutoZoomOut;
-    private String textSplitKey;
     private String[] textsString;
     private Paint.Align textAlign;
 
@@ -81,22 +80,6 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
 
     public ProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public enum SplitKey {
-        SPLIT_KEY_1(0x0000, "\\*"),
-        SPLIT_KEY_2(0x0001, "\\^"),
-        SPLIT_KEY_3(0x0002, "\\:"),
-        SPLIT_KEY_4(0x0003, "\\|"),
-        SPLIT_KEY_5(0x0004, "\\."),
-        SPLIT_KEY_6(0x0005, "\\");
-
-        int value;
-        String splitStr;
-        SplitKey(int value, String splitStr) {
-            this.value = value;
-            this.splitStr = splitStr;
-        }
     }
 
     public enum Direction {
@@ -138,8 +121,6 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
         textAlign = Paint.Align.values()[align];
         float padding = typedArray.getFloat(R.styleable.process_view_text_padding_top_bottom_dp,1.5f);
         textPaddingTopBottomDp = TypedValue.applyDimension(COMPLEX_UNIT_DIP, padding, Resources.getSystem().getDisplayMetrics());
-        int splitWord = typedArray.getInt(R.styleable.process_view_text_split_key, SplitKey.SPLIT_KEY_4.value);
-        textSplitKey = SplitKey.values()[splitWord].splitStr;
         textAutoZoomOut = typedArray.getBoolean(R.styleable.process_view_text_auto_zoom_out, false);
     }
 
@@ -219,7 +200,6 @@ public abstract class ProgressView extends BaseView<ProgressViewInfo> {
         viewAttr.textColor = textColor;
         viewAttr.textsString = textsString;
         viewAttr.textPaddingTopBottomDp = textPaddingTopBottomDp;
-        viewAttr.textSplitKey = textSplitKey;
         viewAttr.textAutoZoomOut = textAutoZoomOut;
         viewAttr.textPxSize = textPxSize;
         viewAttr.textMinPxSize = textMinPxSize;
