@@ -45,7 +45,12 @@ public abstract class BaseArrow extends BaseArrowPath {
     }
 
     protected int getCurBlockWidth() {
-        return blocksWidth[curIndex] * (curIndex + 1);
+        int result = 0;
+        for(int i = 0; i <= curIndex; i++) {
+            result += blocksWidth[i];
+        }
+
+        return result;
     }
 
     /**
