@@ -123,11 +123,40 @@ public class CubeProgressView extends ProgressView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        float x = event.getX();
+        if (!isEnabled()) {
+            return false;
+        }
 
         if(!viewAttr.clickable) {
             return super.onTouchEvent(event);
         }
+
+        int action = event.getAction();
+
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                Log.i(TAG, "ACTION_DOWN");
+                drawTouchBlock(event);
+                return true;
+
+            case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "ACTION_MOVE");
+                drawTouchBlock(event);
+                return super.onTouchEvent(event);
+
+            case MotionEvent.ACTION_UP:
+                Log.i(TAG, "ACTION_UP");
+                return super.onTouchEvent(event);
+
+            default:
+                return super.onTouchEvent(event);
+        }
+
+    }
+
+    private void drawTouchBlock(MotionEvent event) {
+
+        float x = event.getX();
 
         try {
             int curIndex = getProgress();
@@ -154,8 +183,6 @@ public class CubeProgressView extends ProgressView {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return super.onTouchEvent(event);
     }
 
     public int getProgress() {
